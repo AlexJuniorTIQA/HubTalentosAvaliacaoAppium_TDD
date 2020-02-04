@@ -1,48 +1,67 @@
 package br.com.rsinet.appium.teste;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import br.com.rsinet.appium.pages.HomePage;
 import br.com.rsinet.appium.pages.RegisterPage;
-import io.appium.java_client.MobileElement;
+import br.com.rsinet.appium.utils.AutoCompleteRegisterUser;
+import br.com.rsinet.appium.utils.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 
 public class CadastroNovoUsuario {
 
-	WebDriver driver;
+	private AndroidDriver<WebElement> driver;
+	private RegisterPage registerPage;
+	private HomePage homePage;
+	private AutoCompleteRegisterUser autoCompleteRegisterUser;
 	
+
 	@Before
 	public void Inicializa() throws IOException {
 
+			driver = DriverFactory.getDriver();
 	}
 
 	@Test
-	public void CadastroNovoUsuarioComSucesso() throws MalformedURLException {
+	public void CadastroNovoUsuarioComSucesso() throws Exception {
 
-		RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
-
-		driver.findElement(By.id("com.Advantage.aShopping:id/imageViewMenu")).click();
-
-		driver.findElement(By.id("com.Advantage.aShopping:id/textViewMenuUser")).click();
-		driver.findElement(By.id("com.Advantage.aShopping:id/textViewDontHaveAnAccount")).click();
+		registerPage = PageFactory.initElements(driver, RegisterPage.class);
+		homePage = PageFactory.initElements(driver, HomePage.class);
+		autoCompleteRegisterUser= new AutoCompleteRegisterUser(driver);
+		
+		homePage.clickMenu();
+		homePage.clickIconUser();
+		homePage.clickCreatNewAccount();
 
 		
-		registerPage.setUserName("asas");
-		registerPage.setEmail("ASAS");
-		registerPage.setPassword("as");
-		registerPage.setConfirmPassword("as");
-
-		driver.quit();
+		autoCompleteRegisterUser.setUserRegister(driver, 1);
+//		registerPage.setUserName("Brunoa2");
+//		registerPage.setEmail("test@gmail.com.br");
+//		registerPage.setPassword("5851.Bruno");
+//		registerPage.setConfirmPassword("5851.Bruno");
+//
+//		registerPage.setFirstName("Bruno");
+//		registerPage.setLastName("Rosta");
+//		registerPage.setPhoneNumber("4444-99966");
+//		
+		//DriverFactory.pageRoll();
+//		
+//		registerPage.selectCountry(driver, "Canada");
+//		
+//		
+//		registerPage.setState("asas");
+//		registerPage.setAdress("asas");
+//		registerPage.setCity("sasa");
+//		registerPage.setPostalCode("5458");
+		
+		registerPage.clickButtonRegister();
+		
+		//driver.quit();
 	}
 
 }
