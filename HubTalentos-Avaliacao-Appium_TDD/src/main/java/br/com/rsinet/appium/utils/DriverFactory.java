@@ -18,8 +18,9 @@ public class DriverFactory {
 	static AndroidDriver<WebElement> driver;
 
 	/**
-	 * Método de parametrização do ChromeDriver, define Link, Espera de Elemento e
-	 * Resolução
+	 * Método de parametrização e instanciação do driver, define a plataforma, nome, nome da
+	 * automação, o programa á ser aberto, desabilita o teclado, a URL host e o
+	 * tempo de espera por meio de um WebDriverWait
 	 * 
 	 * @throws IOException
 	 **/
@@ -35,7 +36,7 @@ public class DriverFactory {
 
 		// desiredCapabilities.setCapability(MobileCapabilityType.APP,System.getProperty("user.dir")
 		// + "\\src\\main\\resources\\Advantage+demo+2_0.apk");
-		
+
 		desiredCapabilities.setCapability("unicodeKeyboard", true);
 		desiredCapabilities.setCapability("resetKeyboard", true);
 
@@ -44,22 +45,38 @@ public class DriverFactory {
 		return driver;
 	}
 
-	public static AndroidDriver<WebElement> pageRoll() { // 912 1416 828, 178
+	/**
+	 * Método de parametrização do driver:  rolagem de tela do driver para baixo
+	 **/
+
+	public static AndroidDriver<WebElement> pageRollDawn() {
 		(new TouchAction((PerformsTouchActions) driver)).press(PointOption.point(1059, 1744))
 				.moveTo(PointOption.point(1055, 378)).release().perform();
 		return driver;
 	}
 	
-//	public static void findText(AndroidDriver<WebElement> driver, String visibleText) {
-//		driver.findElementByAndroidUIAutomator(
-//				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
-//						+ visibleText + "\").instance(0))")
-//				.click();
-//	}
+	/**
+	 * Método de parametrização do driver:  rolagem de tela do driver para cima
+	 **/
 
+	public static AndroidDriver<WebElement> pageRollUp() {
+		(new TouchAction((PerformsTouchActions) driver)).press(PointOption.point(1055, 378))
+				.moveTo(PointOption.point(1059, 1744)).release().perform();
+		return driver;
+	}
+	
+	/**
+	 * Método de procura para um texto visivel na tela
+	 **/
+	public static void findVisibleText(String visibleText) {
+		driver.findElementByAndroidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+						+ visibleText + "\").instance(0))")
+				.click();
+	}
 
 	/**
-	 * Metodo de Parametrização do Driver, verifica se há algum aberto e se haver,
+	 * Metodo de Parametrização do driver, verifica se há algum aberto e se haver,
 	 * fecha o mesmo
 	 **/
 	public static void quitDriver(WebDriver driver) {
