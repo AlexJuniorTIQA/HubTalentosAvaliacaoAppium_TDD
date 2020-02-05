@@ -87,7 +87,13 @@ public class RegisterPage {
 
 	private WebElement elementButtonRegister;
 
-	////////////////////////////////////////////////////////
+	//////////////////////Elements: TextView//////////////////////////////////
+	
+	@FindBy(how = How.XPATH, using = "//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[3]/android.widget.RelativeLayout/android.widget.TextView")
+
+	private WebElement elementPasswordTextView;
+	
+	
 	public RegisterPage(WebDriver driver) {
 
 		this.driver = driver;
@@ -253,8 +259,10 @@ public class RegisterPage {
 	 * Não recebe nenhum parâmetro, efetuada á comparação da mensagem de "User name
 	 * already exists" com o "warning" do botão register via getText
 	 **/
-	public void assertEqualsRegisterFail() {
-		Assert.assertEquals("User name already exists",
-				driver.findElement(By.xpath("/html/body/div[3]/section/article/sec-form/div[2]/label[1]")).getText());
+
+	/** Retorna um getText ao campo de Password **/
+	public  String getIconPassword() {
+		return elementPasswordTextView.getText();
+		
 	}
 }
