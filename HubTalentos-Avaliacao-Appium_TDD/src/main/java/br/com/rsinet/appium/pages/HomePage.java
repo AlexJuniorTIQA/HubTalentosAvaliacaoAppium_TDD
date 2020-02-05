@@ -26,10 +26,10 @@ public class HomePage {
 	@FindBy(how = How.ID, using = "com.Advantage.aShopping:id/textViewMenuUser")
 	private WebElement elementIconUser;
 
-	@FindBy(how = How.ID, using = "")
+	@FindBy(how = How.ID, using = "com.Advantage.aShopping:id/imageViewSearch")
 	private WebElement elementIconSearch;
-
-	@FindBy(how = How.ID, using = "")
+	
+	@FindBy(how = How.ID, using = "com.Advantage.aShopping:id/editTextSearch")
 	private WebElement elementSearch;
 
 	@FindBy(how = How.ID, using = "com.Advantage.aShopping:id/textViewDontHaveAnAccount")
@@ -56,6 +56,12 @@ public class HomePage {
 	public HomePage(WebDriver driver) {
 
 		this.driver = driver;
+	}
+	public void setSearch(String text) {
+		elementSearch.sendKeys(text);
+	}
+	public void clickIconSearch() {
+		elementIconSearch.click();
 	}
 	
 	/** Retorna um click ao Icone Menu do app **/
