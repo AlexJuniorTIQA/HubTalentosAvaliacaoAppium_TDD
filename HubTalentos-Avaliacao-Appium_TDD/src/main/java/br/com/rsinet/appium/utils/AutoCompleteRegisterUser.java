@@ -1,5 +1,7 @@
 package br.com.rsinet.appium.utils;
 
+import java.util.Random;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -14,6 +16,19 @@ public class AutoCompleteRegisterUser {
 
 		this.driver = driver;
 	}
+	
+	public String getUserName(int quantidadeLetra) {
+		Random quantidadedeletras = new Random();
+		int index;
+		String caracteres = "ABCDEFGHIJKLMNOPQRSTUVYWXZabcdefghijklmnopqrstuvxwyz0123456789";
+		String palavraRandom = "";
+		for (int i = 0; i <= quantidadeLetra - 1; i++) {
+			index = quantidadedeletras.nextInt(caracteres.length());
+			palavraRandom += caracteres.substring(index, index + 1);
+		}
+		return palavraRandom;
+	}
+
 
 	/**
 	 * Classe que preenche todos os campos da página de registro(RegisterPage):
@@ -24,7 +39,7 @@ public class AutoCompleteRegisterUser {
 		RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Users");
 
-		registerPage.setUserName(ExcelUtils.getCellData(numberUser, 1));
+		registerPage.setUserName(this.getUserName(7));
 		registerPage.setEmail(ExcelUtils.getCellData(numberUser, 2));
 		registerPage.setPassword(ExcelUtils.getCellData(numberUser, 3));
 		registerPage.setConfirmPassword(ExcelUtils.getCellData(numberUser, 3));
@@ -47,7 +62,7 @@ public class AutoCompleteRegisterUser {
 		RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Users");
 
-		registerPage.setUserName(ExcelUtils.getCellData(numberUser, 1));
+		registerPage.setUserName(this.getUserName(7));
 		registerPage.setEmail(ExcelUtils.getCellData(numberUser, 2));
 		registerPage.setPassword(ExcelUtils.getCellData(numberUser, 3));
 		registerPage.setConfirmPassword(ExcelUtils.getCellData(numberUser, 3));
