@@ -2,6 +2,7 @@ package br.com.rsinet.appium.teste;
 
 import java.io.IOException;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,7 @@ import br.com.rsinet.appium.utils.DriverFactory;
 import br.com.rsinet.appium.utils.ExcelUtils;
 import io.appium.java_client.android.AndroidDriver;
 
-public class CadastroNovoUsuario {
+public class CadastroUsuario {
 
 	private AndroidDriver<WebElement> driver;
 	private RegisterPage registerPage;
@@ -36,6 +37,10 @@ public class CadastroNovoUsuario {
 		homePage = PageFactory.initElements(driver, HomePage.class);
 		autoCompleteRegisterUser= new AutoCompleteRegisterUser(driver);
 	}
+	@After
+	public void Finaliza() {
+		driver.quit();
+	}
 
 	@Test
 	public void CadastroNovoUsuarioComSucesso() throws Exception {
@@ -52,10 +57,7 @@ public class CadastroNovoUsuario {
 		Thread.sleep(3000);
 		homePage.clickMenu();
 		
-		Assert.assertEquals(ExcelUtils.getCellData(1, 1), homePage.getIconUser());
-	
-		
-		driver.quit();
+		Assert.assertNotEquals("LOGIN", homePage.getIconUser()); 
 	}
 	@Test
 	public void CadastroNovoUsuarioComFalha() throws Exception {
@@ -66,6 +68,5 @@ public class CadastroNovoUsuario {
 		autoCompleteRegisterUser.setAccountDetailsUserRegister(driver, 4);
 
 		Assert.assertEquals("1 upper letter required", registerPage.getIconPassword());
-		driver.quit();
 	}
 }
