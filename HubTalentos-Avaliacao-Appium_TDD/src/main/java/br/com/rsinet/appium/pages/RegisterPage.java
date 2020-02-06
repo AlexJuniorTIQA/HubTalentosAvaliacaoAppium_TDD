@@ -6,7 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -17,8 +19,9 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class RegisterPage {
 
-	final WebDriver driver;
-	private RegisterPage pageRegister;
+	private WebDriver driver;
+	private WebDriverWait wait;
+	//private RegisterPage pageRegister;
 	///////////// Elements: Account Details////////////////
 	@FindBy(how = How.XPATH, using = "//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.EditText")
 	private WebElement elementUserName;
@@ -80,6 +83,8 @@ public class RegisterPage {
 	public RegisterPage(WebDriver driver) {
 
 		this.driver = driver;
+		PageFactory.initElements(this.driver, this);
+		wait = new WebDriverWait(this.driver, 20);
 	}
 
 	/**
