@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,7 +19,7 @@ public class HomePage {
 
 	
 	final WebDriver driver;
-	
+	private WebDriverWait wait;
 	
 	@FindBy(how = How.ID, using = "com.Advantage.aShopping:id/imageViewMenu")
 	private WebElement elementMenu;
@@ -56,6 +57,8 @@ public class HomePage {
 	public HomePage(WebDriver driver) {
 
 		this.driver = driver;
+		PageFactory.initElements(this.driver, this);
+		wait = new WebDriverWait(this.driver, 20);
 	}
 	public void setSearch(String text) {
 		elementSearch.sendKeys(text);
