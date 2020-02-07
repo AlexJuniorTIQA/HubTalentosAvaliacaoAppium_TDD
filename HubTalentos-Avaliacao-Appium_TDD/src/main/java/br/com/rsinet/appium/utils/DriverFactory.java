@@ -39,7 +39,8 @@ public class DriverFactory {
 
 		desiredCapabilities.setCapability("unicodeKeyboard", true);
 		desiredCapabilities.setCapability("resetKeyboard", true);
-
+		desiredCapabilities.setCapability("newCommandTimeout", "120");
+		
 		driver = new AndroidDriver<WebElement>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return driver;

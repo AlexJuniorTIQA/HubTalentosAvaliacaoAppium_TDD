@@ -12,6 +12,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
 import br.com.rsinet.appium.screens.HomeScreen;
+import br.com.rsinet.appium.screens.LoginScreen;
 import br.com.rsinet.appium.screens.RegisterScreen;
 import br.com.rsinet.appium.utils.AutoCompleteRegisterUser;
 import br.com.rsinet.appium.utils.Constant;
@@ -25,6 +26,7 @@ public class CadastroUsuario {
 	private AndroidDriver<WebElement> driver;
 	private RegisterScreen registerPage;
 	private HomeScreen homePage;
+	private LoginScreen loginScreen;
 	private AutoCompleteRegisterUser autoCompleteRegisterUser;
 	private String teste;
 	private ExtentTest report;
@@ -41,6 +43,7 @@ public class CadastroUsuario {
 	
 		driver = DriverFactory.getDriver();
 		registerPage = PageFactory.initElements(driver, RegisterScreen.class);
+		loginScreen = PageFactory.initElements(driver, LoginScreen.class);
 		homePage = PageFactory.initElements(driver, HomeScreen.class);
 		autoCompleteRegisterUser= new AutoCompleteRegisterUser(driver);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Users");
@@ -56,7 +59,7 @@ public class CadastroUsuario {
 		report = ExtentReport.createTest("CadastroNovoUsuarioComSucesso");
 		homePage.clickMenu();
 		homePage.clickIconUser();
-		homePage.clickCreatNewAccount();
+		loginScreen.clickCreatNewAccount();
 
 		autoCompleteRegisterUser.setUserRegister(driver, 1);
 
@@ -77,7 +80,7 @@ public class CadastroUsuario {
 		
 		homePage.clickMenu();
 		homePage.clickIconUser();
-		homePage.clickCreatNewAccount();
+		loginScreen.clickCreatNewAccount();
 
 
 		registerPage.setUserName(autoCompleteRegisterUser.getUserName(7));

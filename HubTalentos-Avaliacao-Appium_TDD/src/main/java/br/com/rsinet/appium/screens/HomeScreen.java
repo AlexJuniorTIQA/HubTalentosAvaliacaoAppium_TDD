@@ -36,23 +36,8 @@ public class HomeScreen {
 	@FindBy(how = How.ID, using = "com.Advantage.aShopping:id/textViewDontHaveAnAccount")
 	private WebElement elementCreatNewAccount;
 
-	@FindBy(how = How.ID, using = "")
-	private WebElement elementTablets;
+	
 
-	@FindBy(how = How.ID, using = "")
-	private WebElement elementHeadPhones;
-
-	@FindBy(how = How.ID, using = "")
-	private WebElement elementSpeakers;
-
-	@FindBy(how = How.ID, using = "")
-	private WebElement elementLaptops;
-
-	@FindBy(how = How.ID, using = "")
-	private WebElement elementMice;
-
-	@FindBy(how = How.XPATH, using = "")
-	private WebElement elementUserLink;
 
 	public HomeScreen(WebDriver driver) {
 
