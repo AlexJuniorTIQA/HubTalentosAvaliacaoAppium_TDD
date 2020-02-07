@@ -11,8 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
-import br.com.rsinet.appium.pages.HomePage;
-import br.com.rsinet.appium.pages.ProductPage;
+import br.com.rsinet.appium.screens.HomeScreen;
+import br.com.rsinet.appium.screens.ProductScreen;
 import br.com.rsinet.appium.utils.Constant;
 import br.com.rsinet.appium.utils.DriverFactory;
 import br.com.rsinet.appium.utils.ExcelUtils;
@@ -22,8 +22,8 @@ import io.appium.java_client.android.AndroidDriver;
 public class ConsultaProdutoBarraDePesquisa {
 
 	private AndroidDriver<WebElement> driver;
-	private HomePage homePage;
-	private ProductPage productPage;
+	private HomeScreen homePage;
+	private ProductScreen productPage;
 	private String teste;
 	private ExtentTest report;
 	static ExtentReports test;
@@ -37,8 +37,8 @@ public class ConsultaProdutoBarraDePesquisa {
 	public void Inicializa() throws Exception {
 		driver = DriverFactory.getDriver();
 
-		homePage = PageFactory.initElements(driver, HomePage.class);
-		productPage = PageFactory.initElements(driver, ProductPage.class);
+		homePage = PageFactory.initElements(driver, HomeScreen.class);
+		productPage = PageFactory.initElements(driver, ProductScreen.class);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Headphone");
 	}
 

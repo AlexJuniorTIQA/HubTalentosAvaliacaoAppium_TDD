@@ -1,4 +1,4 @@
-package br.com.rsinet.appium.pages;
+package br.com.rsinet.appium.screens;
 
 import java.time.Duration;
 
@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Classe de mapeamento de elementos: HomePage do app AdvantageOnlineShopping
  **/
-public class HomePage {
+public class HomeScreen {
 
 	
 	final WebDriver driver;
@@ -54,7 +54,7 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "")
 	private WebElement elementUserLink;
 
-	public HomePage(WebDriver driver) {
+	public HomeScreen(WebDriver driver) {
 
 		this.driver = driver;
 		PageFactory.initElements(this.driver, this);

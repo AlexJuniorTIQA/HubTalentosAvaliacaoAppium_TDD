@@ -1,4 +1,4 @@
-package br.com.rsinet.appium.pages;
+package br.com.rsinet.appium.screens;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Classe de mapeamento de elementos: Página de Produtos do site
  * AdvantageOnlineShopping
  **/
-public class ProductPage {
+public class ProductScreen {
 
 	final WebDriver driver;
 	private WebDriverWait wait;
@@ -32,7 +32,7 @@ public class ProductPage {
 	@FindBy(how = How.XPATH, using = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.FrameLayout[2]")
 	private WebElement elementIconColor;
 	
-	public ProductPage(WebDriver driver) {
+	public ProductScreen(WebDriver driver) {
 
 		this.driver = driver;
 	}

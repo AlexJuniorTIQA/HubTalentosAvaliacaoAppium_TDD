@@ -11,8 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
-import br.com.rsinet.appium.pages.HomePage;
-import br.com.rsinet.appium.pages.RegisterPage;
+import br.com.rsinet.appium.screens.HomeScreen;
+import br.com.rsinet.appium.screens.RegisterScreen;
 import br.com.rsinet.appium.utils.AutoCompleteRegisterUser;
 import br.com.rsinet.appium.utils.Constant;
 import br.com.rsinet.appium.utils.DriverFactory;
@@ -23,8 +23,8 @@ import io.appium.java_client.android.AndroidDriver;
 public class CadastroUsuario {
 
 	private AndroidDriver<WebElement> driver;
-	private RegisterPage registerPage;
-	private HomePage homePage;
+	private RegisterScreen registerPage;
+	private HomeScreen homePage;
 	private AutoCompleteRegisterUser autoCompleteRegisterUser;
 	private String teste;
 	private ExtentTest report;
@@ -40,8 +40,8 @@ public class CadastroUsuario {
 
 	
 		driver = DriverFactory.getDriver();
-		registerPage = PageFactory.initElements(driver, RegisterPage.class);
-		homePage = PageFactory.initElements(driver, HomePage.class);
+		registerPage = PageFactory.initElements(driver, RegisterScreen.class);
+		homePage = PageFactory.initElements(driver, HomeScreen.class);
 		autoCompleteRegisterUser= new AutoCompleteRegisterUser(driver);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Users");
 	}

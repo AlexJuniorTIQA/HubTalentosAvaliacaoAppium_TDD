@@ -5,7 +5,7 @@ import java.util.Random;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import br.com.rsinet.appium.pages.RegisterPage;
+import br.com.rsinet.appium.screens.RegisterScreen;
 import io.appium.java_client.android.AndroidDriver;
 
 public class AutoCompleteRegisterUser {
@@ -36,7 +36,7 @@ public class AutoCompleteRegisterUser {
 	 **/
 	public void setUserRegister(AndroidDriver<WebElement> driver, int numberUser) throws Exception {
 
-		RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
+		RegisterScreen registerPage = PageFactory.initElements(driver, RegisterScreen.class);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Users");
 
 		registerPage.setUserName(this.getUserName(7));
@@ -59,7 +59,7 @@ public class AutoCompleteRegisterUser {
 	}
 	public void setAccountDetailsUserRegister(AndroidDriver<WebElement> driver, int numberUser) throws Exception {
 
-		RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
+		RegisterScreen registerPage = PageFactory.initElements(driver, RegisterScreen.class);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Users");
 
 		registerPage.setUserName(this.getUserName(7));

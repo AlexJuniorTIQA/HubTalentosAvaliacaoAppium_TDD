@@ -1,4 +1,4 @@
-package br.com.rsinet.appium.pages;
+package br.com.rsinet.appium.screens;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -17,7 +17,7 @@ import io.appium.java_client.android.AndroidDriver;
  * AdvantageOnlineShopping
  **/
 
-public class RegisterPage {
+public class RegisterScreen {
 
 	private WebDriver driver;
 	private WebDriverWait wait;
@@ -80,7 +80,7 @@ public class RegisterPage {
 	private WebElement elementPasswordTextView;
 	
 	
-	public RegisterPage(WebDriver driver) {
+	public RegisterScreen(WebDriver driver) {
 
 		this.driver = driver;
 		PageFactory.initElements(this.driver, this);
