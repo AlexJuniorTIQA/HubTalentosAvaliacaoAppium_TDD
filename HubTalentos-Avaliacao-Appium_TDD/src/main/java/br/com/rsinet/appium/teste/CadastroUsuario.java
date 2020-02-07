@@ -1,16 +1,15 @@
 package br.com.rsinet.appium.teste;
 
-import java.io.IOException;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 
 import br.com.rsinet.appium.pages.HomePage;
 import br.com.rsinet.appium.pages.RegisterPage;
@@ -18,6 +17,7 @@ import br.com.rsinet.appium.utils.AutoCompleteRegisterUser;
 import br.com.rsinet.appium.utils.Constant;
 import br.com.rsinet.appium.utils.DriverFactory;
 import br.com.rsinet.appium.utils.ExcelUtils;
+import br.com.rsinet.appium.utils.ExtentReport;
 import io.appium.java_client.android.AndroidDriver;
 
 public class CadastroUsuario {
@@ -26,9 +26,15 @@ public class CadastroUsuario {
 	private RegisterPage registerPage;
 	private HomePage homePage;
 	private AutoCompleteRegisterUser autoCompleteRegisterUser;
+	private String teste;
+	private ExtentTest report;
+    static ExtentReports test;
 	
 	
-
+    @BeforeClass
+    public static void test() {
+        test = ExtentReport.setExtent("Cadastro Novo Usuario");
+    }
 	@Before
 	public void Inicializa() throws Exception {
 
@@ -41,12 +47,13 @@ public class CadastroUsuario {
 	}
 	@After
 	public void Finaliza() {
+		ExtentReport.quitExtent(test);
 		driver.quit();
 	}
 
 	@Test
 	public void CadastroNovoUsuarioComSucesso() throws Exception {
-	
+		report = ExtentReport.createTest("CadastroNovoUsuarioComSucesso");
 		homePage.clickMenu();
 		homePage.clickIconUser();
 		homePage.clickCreatNewAccount();
@@ -60,9 +67,14 @@ public class CadastroUsuario {
 		homePage.clickMenu();
 		
 		Assert.assertNotEquals("LOGIN", homePage.getIconUser()); 
+		
+		ExtentReport.statusReported(report, driver, teste);
+		teste = "TesteCadastroNovoUsuarioComSucesso";
 	}
 	@Test
 	public void CadastroNovoUsuarioComFalha() throws Exception {
+		report = ExtentReport.createTest("CadastroNovoUsuarioComFalha");
+		
 		homePage.clickMenu();
 		homePage.clickIconUser();
 		homePage.clickCreatNewAccount();
@@ -74,5 +86,8 @@ public class CadastroUsuario {
 		registerPage.setConfirmPassword(ExcelUtils.getCellData(4, 3));
 		
 		Assert.assertEquals("1 upper letter required", registerPage.getIconPassword());
+		
+		ExtentReport.statusReported(report, driver, teste);
+		teste = "TesteCadastroNovoUsuarioComFalha";
 	}
 }
