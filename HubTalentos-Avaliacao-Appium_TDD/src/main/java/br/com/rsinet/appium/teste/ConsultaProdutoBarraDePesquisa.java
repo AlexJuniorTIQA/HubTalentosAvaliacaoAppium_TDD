@@ -22,8 +22,8 @@ import io.appium.java_client.android.AndroidDriver;
 public class ConsultaProdutoBarraDePesquisa {
 
 	private AndroidDriver<WebElement> driver;
-	private HomeScreen homePage;
-	private ProductScreen productPage;
+	private HomeScreen homeScreen;
+	private ProductScreen productScreen;
 	private String teste;
 	private ExtentTest report;
 	static ExtentReports test;
@@ -37,8 +37,8 @@ public class ConsultaProdutoBarraDePesquisa {
 	public void Inicializa() throws Exception {
 		driver = DriverFactory.getDriver();
 
-		homePage = PageFactory.initElements(driver, HomeScreen.class);
-		productPage = PageFactory.initElements(driver, ProductScreen.class);
+		homeScreen = PageFactory.initElements(driver, HomeScreen.class);
+		productScreen = PageFactory.initElements(driver, ProductScreen.class);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Headphone");
 	}
 
@@ -52,14 +52,14 @@ public class ConsultaProdutoBarraDePesquisa {
 	public void ConsultaProdutoBarraDePesquisaComSucesso() throws Exception {
 		report = ExtentReport.createTest("TesteProdutoBarraDePesquisaComSucesso");
 		
-		homePage.clickIconSearch();
-		homePage.setSearch(ExcelUtils.getCellData(1, 1));
-		homePage.clickIconSearch();
+		homeScreen.clickIconSearch();
+		homeScreen.setSearch(ExcelUtils.getCellData(1, 1));
+		homeScreen.clickIconSearch();
 
 		DriverFactory.pageRollUp();
-		productPage.clickProduct();
+		productScreen.clickProduct();
 
-		Assert.assertEquals(ExcelUtils.getCellData(1, 1).toUpperCase(), productPage.getTextProduct());
+		Assert.assertEquals(ExcelUtils.getCellData(1, 1).toUpperCase(), productScreen.getTextProduct());
 
 		ExtentReport.statusReported(report, driver, teste);
 		teste = "TesteProdutoBarraDePesquisaComSucesso";
@@ -69,14 +69,14 @@ public class ConsultaProdutoBarraDePesquisa {
 	public void ConsultaProdutoBarraDePesquisaComFalha() throws Exception {
 		report = ExtentReport.createTest("TesteProdutoBarraDePesquisaComFalha");
 		
-		homePage.clickIconSearch();
+		homeScreen.clickIconSearch();
 
 		String product = ExcelUtils.getCellData(6, 1);
-		homePage.setSearch(product);
+		homeScreen.setSearch(product);
 
-		homePage.clickIconSearch();
+		homeScreen.clickIconSearch();
 
-		Assert.assertEquals("- No results for \"" + product + "\" -", productPage.getNotFoundProduct());
+		Assert.assertEquals("- No results for \"" + product + "\" -", productScreen.getNotFoundProduct());
 		
 		ExtentReport.statusReported(report, driver, teste);
 		teste = "TesteProdutoBarraDePesquisaComFalha";

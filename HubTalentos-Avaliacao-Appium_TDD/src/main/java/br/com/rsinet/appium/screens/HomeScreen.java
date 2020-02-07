@@ -45,9 +45,11 @@ public class HomeScreen {
 		PageFactory.initElements(this.driver, this);
 		wait = new WebDriverWait(this.driver, 20);
 	}
+	/** Retorna um sendKeys ao elemento Search**/
 	public void setSearch(String text) {
 		elementSearch.sendKeys(text);
 	}
+	/** Retorna um click ao Icon Search **/
 	public void clickIconSearch() {
 		elementIconSearch.click();
 	}

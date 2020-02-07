@@ -21,7 +21,7 @@ import io.appium.java_client.android.AndroidDriver;
 public class ConsultaProdutoTelaInicial {
 	private AndroidDriver<WebElement> driver;
 
-	private ProductScreen productPage;
+	private ProductScreen productScreen;
 	private String teste;
 	private ExtentTest report;
     static ExtentReports test;
@@ -35,7 +35,7 @@ public class ConsultaProdutoTelaInicial {
 	public void Inicializa() throws Exception {
 		driver = DriverFactory.getDriver();
 	
-		productPage = PageFactory.initElements(driver, ProductScreen.class);
+		productScreen = PageFactory.initElements(driver, ProductScreen.class);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Mice");
 	}
 	@After 
@@ -51,7 +51,7 @@ public class ConsultaProdutoTelaInicial {
 		DriverFactory.findVisibleText("Mice");
 		DriverFactory.findVisibleText(ExcelUtils.getCellData(6, 1));
 		
-		Assert.assertEquals(ExcelUtils.getCellData(6, 1).toUpperCase(), productPage.getTextProduct());
+		Assert.assertEquals(ExcelUtils.getCellData(6, 1).toUpperCase(), productScreen.getTextProduct());
 	
 		ExtentReport.statusReported(report, driver, teste);
 		teste = "TesteProdutoTelaInicialComSucesso";
@@ -65,10 +65,10 @@ public class ConsultaProdutoTelaInicial {
 		
 		DriverFactory.findVisibleText("HP PAVILION 15Z TOUCH LAPTOP");
 		
-		productPage.clickSelectColor();
-		productPage.clickIconColor();
+		productScreen.clickSelectColor();
+		productScreen.clickIconColorYellow();
 		
-		Assert.assertEquals("HP PAVILION 15Z TOUCH LAPTOP", productPage.getTextProduct());
+		Assert.assertEquals("HP PAVILION 15Z TOUCH LAPTOP", productScreen.getTextProduct());
 		
 		ExtentReport.statusReported(report, driver, teste);
 		teste = "TesteProdutoTelaInicialComFalha";

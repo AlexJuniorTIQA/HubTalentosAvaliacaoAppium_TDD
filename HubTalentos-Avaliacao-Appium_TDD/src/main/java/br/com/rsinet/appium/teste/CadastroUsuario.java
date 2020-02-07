@@ -24,8 +24,8 @@ import io.appium.java_client.android.AndroidDriver;
 public class CadastroUsuario {
 
 	private AndroidDriver<WebElement> driver;
-	private RegisterScreen registerPage;
-	private HomeScreen homePage;
+	private RegisterScreen registerScreen;
+	private HomeScreen homeScreen;
 	private LoginScreen loginScreen;
 	private AutoCompleteRegisterUser autoCompleteRegisterUser;
 	private String teste;
@@ -42,9 +42,9 @@ public class CadastroUsuario {
 
 	
 		driver = DriverFactory.getDriver();
-		registerPage = PageFactory.initElements(driver, RegisterScreen.class);
+		registerScreen = PageFactory.initElements(driver, RegisterScreen.class);
 		loginScreen = PageFactory.initElements(driver, LoginScreen.class);
-		homePage = PageFactory.initElements(driver, HomeScreen.class);
+		homeScreen = PageFactory.initElements(driver, HomeScreen.class);
 		autoCompleteRegisterUser= new AutoCompleteRegisterUser(driver);
 		ExcelUtils.setExcelFile(Constant.File_DataUserRegister, "Users");
 	}
@@ -57,19 +57,19 @@ public class CadastroUsuario {
 	@Test
 	public void CadastroNovoUsuarioComSucesso() throws Exception {
 		report = ExtentReport.createTest("CadastroNovoUsuarioComSucesso");
-		homePage.clickMenu();
-		homePage.clickIconUser();
+		homeScreen.clickMenu();
+		homeScreen.clickIconUser();
 		loginScreen.clickCreatNewAccount();
 
 		autoCompleteRegisterUser.setUserRegister(driver, 1);
 
-		registerPage.clickButtonRegister();
+		registerScreen.clickButtonRegister();
 		
 		
 		DriverFactory.pageRollUp();
-		homePage.clickMenu();
+		homeScreen.clickMenu();
 		
-		Assert.assertNotEquals("LOGIN", homePage.getIconUser()); 
+		Assert.assertNotEquals("LOGIN", homeScreen.getIconUser()); 
 		
 		ExtentReport.statusReported(report, driver, teste);
 		teste = "TesteCadastroNovoUsuarioComSucesso";
@@ -78,17 +78,17 @@ public class CadastroUsuario {
 	public void CadastroNovoUsuarioComFalha() throws Exception {
 		report = ExtentReport.createTest("CadastroNovoUsuarioComFalha");
 		
-		homePage.clickMenu();
-		homePage.clickIconUser();
+		homeScreen.clickMenu();
+		homeScreen.clickIconUser();
 		loginScreen.clickCreatNewAccount();
 
 
-		registerPage.setUserName(autoCompleteRegisterUser.getUserName(7));
-		registerPage.setEmail(ExcelUtils.getCellData(4, 2));
-		registerPage.setPassword(ExcelUtils.getCellData(4, 3));
-		registerPage.setConfirmPassword(ExcelUtils.getCellData(4, 3));
+		registerScreen.setUserName(autoCompleteRegisterUser.getUserName(7));
+		registerScreen.setEmail(ExcelUtils.getCellData(4, 2));
+		registerScreen.setPassword(ExcelUtils.getCellData(4, 3));
+		registerScreen.setConfirmPassword(ExcelUtils.getCellData(4, 3));
 		
-		Assert.assertEquals("1 upper letter required", registerPage.getIconPassword());
+		Assert.assertEquals("1 upper letter required", registerScreen.getIconPassword());
 		
 		ExtentReport.statusReported(report, driver, teste);
 		teste = "TesteCadastroNovoUsuarioComFalha";

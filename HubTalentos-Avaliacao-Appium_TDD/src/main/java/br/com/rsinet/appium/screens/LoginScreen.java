@@ -24,7 +24,7 @@ public class LoginScreen {
 
 		this.driver = driver;
 	}
-
+	/**Retorna um click ao elemento Creat New Account**/
 	public void clickCreatNewAccount() {
 		elementCreatNewAccount.click();
 		;
